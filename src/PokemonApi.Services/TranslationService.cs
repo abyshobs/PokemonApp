@@ -14,10 +14,10 @@ namespace PokemonApi.Services
             _translationrepositories = translationrepositories;
         }
 
-        public async Task<string?> GetTranslation(string? description, string? habitat, bool? isLegendary)
+        public async Task<string?> GetTranslation(string description, string? habitat, bool? isLegendary)
         {
             ITranslationRespository? translationRepository;
-            if (string.Equals(habitat, "cave", StringComparison.OrdinalIgnoreCase) || isLegendary.HasValue)
+            if (string.Equals(habitat, "cave", StringComparison.OrdinalIgnoreCase) || (isLegendary.HasValue && isLegendary.Value == true))
             {
                 translationRepository = _translationrepositories?.SingleOrDefault(x => x.TranslationType == Repository.Enums.TranslationType.Yoda);
                 if (translationRepository == null)
@@ -34,13 +34,13 @@ namespace PokemonApi.Services
                 }
             }
 
-            var httpResponseMessage = await translationRepository.GetTranslation(description, CancellationToken.None);
+            var httpResponseMessage = await translationRepository.GetTranslation(description);
            
             var translationResult = await DeserializeTranslationAsync(httpResponseMessage);
 
             if (translationResult?.Success?.Total != 1)
             {
-                throw new Exception("Could not get translated text from FunTranslationsAPI.");
+                return description;
             }
 
             return translationResult?.Contents?.Translated;

@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging.Abstractions;
 using PokemonApi.Common.ExtensionMethods;
 using PokemonApi.Common.Models;
 using PokemonApi.Models;
@@ -46,7 +45,7 @@ namespace PokemonApp.Controllers
             }
         }
 
-        [Route("pokemon/translated/{name}")]
+        [Route("translated/{name}")]
         [HttpGet]
         [ProducesResponseType(typeof(PokemonModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(PokemonModel), StatusCodes.Status404NotFound)]
@@ -61,16 +60,20 @@ namespace PokemonApp.Controllers
                 }
 
                 var pokemonModel = GetPokemonModel(name, pokemonSpecies);
-                var funTranslation = await _translationService.GetTranslation(pokemonModel.Description, pokemonModel.Habitat, pokemonModel.IsLegendary);
-                pokemonModel.Description = funTranslation;
+                if (!string.IsNullOrEmpty(pokemonModel.Description))
+                {
+                    var funTranslation = await _translationService.GetTranslation(pokemonModel.Description, pokemonModel.Habitat, pokemonModel.IsLegendary);
+                    pokemonModel.Description = funTranslation;
+                    return Ok(pokemonModel);
+                }
 
                 return Ok(pokemonModel);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError($"An error occured when trying to fetch fun translation for Pokemon : {name}.", ex);
                 throw;
-            }           
+            }
         }
 
         private async Task<PokemonSpecies?> GetPokemon(string name)

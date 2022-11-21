@@ -1,5 +1,6 @@
 using PokemonApi.Repository.Interfaces;
 using PokemonApi.Services.Interfaces;
+using Shouldly;
 
 namespace PokemonApi.IntegrationTest
 {
@@ -12,12 +13,38 @@ namespace PokemonApi.IntegrationTest
             _fixture = fixture;
         }
 
-        [Fact]
-        public async Task Test1()
+        [Theory]
+        [InlineData("cave", false)]
+        [InlineData("cave", true)]
+        [InlineData("rare", false)]
+        public async Task AndPokemonMeetsYodaTranslationCriteria_ThenYodaTranslationShouldBeReturned(string habitat, bool isLegendary)
         {
             var translatorService = _fixture.GetService<ITranslationService>();
-            var translatedText = await translatorService.GetTranslation("Master Obiwan has lost a planet.", "cave", true);
+            var testDescription = "Master Obiwan has lost a planet.";
+            var translatedText = await translatorService.GetTranslation(testDescription, habitat, isLegendary);
             translatedText?.ShouldNotBeNull();
+            translatedText?.ToLower().ShouldBe("lost a planet,  master obiwan has.");
+        }
+
+        [Theory]
+        [InlineData("rare", false)]
+        public async Task AndPokemonMeetsShakespeareTranslationCriteria_ThenShakespeareTranslationShouldBeReturned(string habitat, bool isLegendary)
+        {
+            var translatorService = _fixture.GetService<ITranslationService>();
+            var testDescription = "Master Obiwan has lost a planet.";
+            var translatedText = await translatorService.GetTranslation(testDescription, habitat, isLegendary);
+            translatedText?.ShouldNotBeNull();
+            translatedText?.ToLower().ShouldBe("master obiwan hath did lose a planet.");
+        }
+
+        [Fact]
+        public async Task AndPokemonMeetsNoCriteria_ThenStandardTranslationShouldBeReturned()
+        {
+            var translatorService = _fixture.GetService<ITranslationService>();
+            var testDescription = "Master Obiwan has lost a planet.";
+            var translatedText = await translatorService.GetTranslation(testDescription, null, null);
+            translatedText?.ShouldNotBeNull();
+            translatedText?.ToLower().ShouldBe("master obiwan has lost a planet.");
         }
     }
 }

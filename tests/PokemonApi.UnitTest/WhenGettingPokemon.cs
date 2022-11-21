@@ -13,11 +13,13 @@ namespace PokemonApi.UnitTest
     {
         private readonly PokemonController _sut;
         private readonly Mock<IPokemonService> _mockPokemonService;
+        private readonly Mock<ITranslationService> _mockTranslationService;
 
         public WhenGettingPokemon()
         {
             _mockPokemonService = new Mock<IPokemonService>();
-            _sut = new PokemonController(_mockPokemonService.Object, null, NullLogger<PokemonController>.Instance);
+            _mockTranslationService = new Mock<ITranslationService>();
+            _sut = new PokemonController(_mockPokemonService.Object, _mockTranslationService.Object, NullLogger<PokemonController>.Instance);
         }
 
         [Fact]
@@ -43,7 +45,7 @@ namespace PokemonApi.UnitTest
             // Assert
             okResult?.StatusCode.ShouldBe(200);
             okResult?.Value.ShouldNotBeNull();
-            var pokemonModel = okResult.Value as PokemonModel;
+            var pokemonModel = okResult?.Value as PokemonModel;
             pokemonModel.ShouldNotBeNull();
             pokemonModel.Description.ShouldBe("Hello I am a standard pokemon.");
         }

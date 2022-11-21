@@ -14,7 +14,7 @@ namespace PokemonApi.Repository.Factories
         }
         public TranslationType TranslationType { get; set; } = TranslationType.Yoda;
 
-        public async Task<HttpResponseMessage> GetTranslation(string text, CancellationToken cancellationToken)
+        public async Task<HttpResponseMessage> GetTranslation(string text)
         {
             var httpClient = _httpClientFactory.CreateClient("FunTranslationsApi");
             var formContent = new FormUrlEncodedContent(new[]
@@ -22,7 +22,7 @@ namespace PokemonApi.Repository.Factories
                 new KeyValuePair<string, string>("text", text),
             });
 
-            return await httpClient.PostAsync(httpClient.BaseAddress + _translationUriSuffix, formContent, cancellationToken);
+            return await httpClient.PostAsync(httpClient.BaseAddress + _translationUriSuffix, formContent);
         }
     }
 }
