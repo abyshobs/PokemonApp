@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonApi", "src\PokemonApi\PokemonApi.csproj", "{0E5BA754-9952-4FD6-A124-38CE498BF215}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonApi", "src\PokemonApi\PokemonApi.csproj", "{0E5BA754-9952-4FD6-A124-38CE498BF215}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonApi.Repository", "src\PokemonApi.Repository\PokemonApi.Repository.csproj", "{4D1B0C5A-A064-4F78-909C-5C237C5C2AB6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonApi.Services", "src\PokemonApi.Services\PokemonApi.Services.csproj", "{725B82DB-4EE4-4BC9-8B1B-0CABF7D6588C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonApi.Common", "src\PokemonApi.Common\PokemonApi.Common.csproj", "{8A5ABAED-FFAC-460B-8F5D-71BE3FA1F669}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonApi.UnitTest", "tests\PokemonApi.UnitTest\PokemonApi.UnitTest.csproj", "{D0A58213-2763-4C1F-B787-67774B6F0839}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{0E5BA754-9952-4FD6-A124-38CE498BF215}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E5BA754-9952-4FD6-A124-38CE498BF215}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E5BA754-9952-4FD6-A124-38CE498BF215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D1B0C5A-A064-4F78-909C-5C237C5C2AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D1B0C5A-A064-4F78-909C-5C237C5C2AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D1B0C5A-A064-4F78-909C-5C237C5C2AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D1B0C5A-A064-4F78-909C-5C237C5C2AB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{725B82DB-4EE4-4BC9-8B1B-0CABF7D6588C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{725B82DB-4EE4-4BC9-8B1B-0CABF7D6588C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{725B82DB-4EE4-4BC9-8B1B-0CABF7D6588C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{725B82DB-4EE4-4BC9-8B1B-0CABF7D6588C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A5ABAED-FFAC-460B-8F5D-71BE3FA1F669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A5ABAED-FFAC-460B-8F5D-71BE3FA1F669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A5ABAED-FFAC-460B-8F5D-71BE3FA1F669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A5ABAED-FFAC-460B-8F5D-71BE3FA1F669}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A58213-2763-4C1F-B787-67774B6F0839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A58213-2763-4C1F-B787-67774B6F0839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A58213-2763-4C1F-B787-67774B6F0839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A58213-2763-4C1F-B787-67774B6F0839}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

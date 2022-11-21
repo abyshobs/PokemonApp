@@ -1,9 +1,26 @@
+using PokemonApi.Repository;
+using PokemonApi.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+
+builder.Services.AddHttpClient("PokeApi", httpClient =>
+{
+    httpClient.BaseAddress = new Uri(builder.Configuration["APIs:PokemonAPI"]);
+});
+
+builder.Services.AddHttpClient("FunTranslationsApi", httpClient =>
+{
+    httpClient.BaseAddress = new Uri(builder.Configuration["APIs:FunTranslationsAPI"]);
+});
+
+builder.Services.AddTransient<IPokemonRepository, PokemonRepository>();
+builder.Services.AddTransient<IPokemonService, PokemonService>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
