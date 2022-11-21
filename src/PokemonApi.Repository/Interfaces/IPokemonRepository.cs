@@ -1,4 +1,4 @@
-﻿namespace PokemonApi.Repository
+﻿namespace PokemonApi.Repository.Interfaces
 {
     public interface IPokemonRepository
     {

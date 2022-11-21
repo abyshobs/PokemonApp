@@ -1,6 +1,6 @@
 ﻿using PokemonApi.Common.Models;
 
-namespace PokemonApi.Services
+namespace PokemonApi.Services.Interfaces
 {
     public interface IPokemonService
     {

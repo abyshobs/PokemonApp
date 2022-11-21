@@ -9,7 +9,7 @@
     public class PokemonSpeciesLink
     {
         public string? Name { get; set; }
-        public Uri? Uri { get; set; }
+        public Uri? Url { get; set; }
     }
 
     public class PokemonSpecies

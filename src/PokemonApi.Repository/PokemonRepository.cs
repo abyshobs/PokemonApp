@@ -1,4 +1,6 @@
-﻿namespace PokemonApi.Repository
+﻿using PokemonApi.Repository.Interfaces;
+
+namespace PokemonApi.Repository
 {
     public class PokemonRepository : IPokemonRepository
     {

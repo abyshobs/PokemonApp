@@ -1,5 +1,6 @@
 ﻿using PokemonApi.Common.Models;
-using PokemonApi.Repository;
+using PokemonApi.Repository.Interfaces;
+using PokemonApi.Services.Interfaces;
 using System.Net;
 using System.Text.Json;
 
@@ -50,7 +51,7 @@ namespace PokemonApi.Services
             }
         }
 
-        private static async Task<T> DeserializeAsync<T>(HttpResponseMessage httpResponseMessage)
+        private static async Task<T?> DeserializeAsync<T>(HttpResponseMessage httpResponseMessage)
         {
             using var contentStream = await httpResponseMessage.Content.ReadAsStreamAsync();
             var options = new JsonSerializerOptions

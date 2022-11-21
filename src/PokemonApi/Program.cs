@@ -1,5 +1,8 @@
 using PokemonApi.Repository;
+using PokemonApi.Repository.Factories;
+using PokemonApi.Repository.Interfaces;
 using PokemonApi.Services;
+using PokemonApi.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +23,9 @@ builder.Services.AddHttpClient("FunTranslationsApi", httpClient =>
 
 builder.Services.AddTransient<IPokemonRepository, PokemonRepository>();
 builder.Services.AddTransient<IPokemonService, PokemonService>();
+builder.Services.AddTransient<ITranslationService, TranslationService>();
+builder.Services.AddTransient<ITranslationRespository, YodaTranslator>();
+builder.Services.AddTransient<ITranslationRespository, ShakespeareTranslator>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -40,3 +46,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

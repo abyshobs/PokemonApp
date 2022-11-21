@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
-using PokedexApp.Controllers;
 using PokemonApi.Common.Models;
 using PokemonApi.Models;
-using PokemonApi.Services;
+using PokemonApi.Services.Interfaces;
+using PokemonApp.Controllers;
 using Shouldly;
 
 namespace PokemonApi.UnitTest
@@ -17,7 +17,7 @@ namespace PokemonApi.UnitTest
         public WhenGettingPokemon()
         {
             _mockPokemonService = new Mock<IPokemonService>();
-            _sut = new PokemonController(_mockPokemonService.Object, NullLogger<PokemonController>.Instance);
+            _sut = new PokemonController(_mockPokemonService.Object, null, NullLogger<PokemonController>.Instance);
         }
 
         [Fact]
