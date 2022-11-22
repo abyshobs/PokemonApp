@@ -6,7 +6,7 @@ The app also enables you to get fun translations of the Pokemon's description.
 
 ## How to run the app
 ### Steps
-- In order to run the app locally, clone the PokemonApp repository in Visual Studio (the app uses .Net 6)
+- In order to run the app locally, Visual studio should be installed on your local machine (preferably Visual Studio 2019 and up). Clone the PokemonApp repository in Visual Studio (the app uses .Net 6)
 - Pull changes from the master branch
 - Run the app locally (There are two ways you can run the app locally. Either with Docker or in your local browser. The desired startup options can be 
 toggled in Visual Studio)
